@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const Login = () => {
+  const { auth, loginWithPopUp } = useContext(AuthContext);
+  const handleGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    loginWithPopUp(provider)
+      .then(result => {
+        console.log(result.user);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <Container>
@@ -29,6 +42,13 @@ const Login = () => {
             New to site? <Link to="/register">Register</Link>
           </Form.Text>
         </Form>
+        <hr />
+        <div className="text-center">
+          <button onClick={handleGoogle} className="btn btn-primary me-2">
+            Login with google
+          </button>
+          <button className="btn btn-primary">Login with Github</button>
+        </div>
       </Container>
     </div>
   );

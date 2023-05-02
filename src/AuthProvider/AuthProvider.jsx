@@ -4,11 +4,13 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from 'firebase/auth';
-import app from '../firebase/firebase.config';
+
 import { useEffect } from 'react';
 import { useState } from 'react';
+import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext(null);
 
@@ -27,7 +29,9 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-
+  const loginWithPopUp = provider => {
+    return signInWithPopup(auth, provider);
+  };
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
@@ -35,7 +39,6 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, loggedUser => {
-      console.log('logged in user inside auth state observer', loggedUser);
       setUser(loggedUser);
       setLoading(false);
     });
@@ -51,6 +54,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     signIn,
     logOut,
+    loginWithPopUp,
   };
 
   return (

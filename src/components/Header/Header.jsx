@@ -1,8 +1,17 @@
-import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+      .then()
+      .catch(err => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       <Container className="p-0 mb-4">
@@ -19,9 +28,20 @@ const Header = () => {
                   Blog
                 </Link>
               </Nav>
-              <Link to="/login">
-                <button className="btn btn-primary">Login</button>
-              </Link>
+              {user ? (
+                <Image className="me-4" src={user.photoURL} roundedCircle />
+              ) : (
+                <></>
+              )}
+              {user ? (
+                <button className="btn btn-primary" onClick={handleLogout}>
+                  Logout
+                </button>
+              ) : (
+                <Link to="/login">
+                  <button className="btn btn-primary">Login</button>
+                </Link>
+              )}
             </Navbar.Collapse>
           </Container>
         </Navbar>
