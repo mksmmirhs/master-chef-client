@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import banner from '../../assets/banner.jpg';
 import './Home.css';
 import { useLoaderData } from 'react-router-dom';
 import HomeChef from '../Homechef/HomeChef';
+import ExtraOne from '../ExtraOne/ExtraOne';
 const Home = () => {
   const data = useLoaderData();
   console.log(data);
@@ -17,13 +18,14 @@ const Home = () => {
             and showcase the skills of culinary experts.
           </h1>
         </div>
-        <div>
+        <div className="mb-4">
           <Row xs={1} md={3} className="g-4">
             {data.map(chef => (
               <HomeChef key={chef.id} chef={chef}></HomeChef>
             ))}
           </Row>
         </div>
+        <ExtraOne></ExtraOne>
       </Container>
     </div>
   );
