@@ -14,8 +14,7 @@ const Home = () => {
           <img className="banner-img" src={banner} alt="" />
           <h1 className="p-4">
             Welcome to our chef's website, where we celebrate the art of cooking
-            and showcase the skills of culinary experts. Our platform offers a
-            collection of expertly crafted recipes, cooking tips....
+            and showcase the skills of culinary experts.
           </h1>
         </div>
         <div>
