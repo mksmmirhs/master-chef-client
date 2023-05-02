@@ -22,7 +22,7 @@ const HomeChef = ({ chef }) => {
             <p>Numbers of recipes: {num_of_recipes} </p>
             <p>Likes: {likes}</p>
             <Link to={`chef/${id}`}>
-              <button className="btn btn-primary">Recipes</button>
+              <button className="btn btn-primary">View Recipes</button>
             </Link>
           </Card.Text>
         </Card.Body>

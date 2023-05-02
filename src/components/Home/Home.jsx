@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import banner from '../../assets/banner.jpg';
 import './Home.css';
 import { useLoaderData } from 'react-router-dom';
@@ -8,7 +8,6 @@ import ExtraOne from '../ExtraOne/ExtraOne';
 import ExtraTwo from '../ExtraTwo/ExtraTwo';
 const Home = () => {
   const data = useLoaderData();
-  console.log(data);
   return (
     <div>
       <Container>
