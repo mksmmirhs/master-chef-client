@@ -5,6 +5,7 @@ import './Home.css';
 import { useLoaderData } from 'react-router-dom';
 import HomeChef from '../Homechef/HomeChef';
 import ExtraOne from '../ExtraOne/ExtraOne';
+import ExtraTwo from '../ExtraTwo/ExtraTwo';
 const Home = () => {
   const data = useLoaderData();
   console.log(data);
@@ -26,6 +27,7 @@ const Home = () => {
           </Row>
         </div>
         <ExtraOne></ExtraOne>
+        <ExtraTwo></ExtraTwo>
       </Container>
     </div>
   );

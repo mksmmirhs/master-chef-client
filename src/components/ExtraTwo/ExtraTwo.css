@@ -1,0 +1,8 @@
+.div-bg {
+  background: url('../../assets/back.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px;
+
+  text-align: center;
+}
