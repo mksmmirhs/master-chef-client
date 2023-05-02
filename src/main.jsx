@@ -7,6 +7,8 @@ import Main from './layout/Main';
 import ErrorPage from './error-page';
 import Home from './components/Home/Home';
 import Chef from './components/Chef/Chef';
+import AuthProvider from './AuthProvider/AuthProvider';
+import Login from './components/Login/Login';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -24,11 +26,17 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`https://server-mksmmirhs.vercel.app/data/${params.id}`),
       },
+      {
+        path: '/login',
+        element: <Login></Login>,
+      },
     ],
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

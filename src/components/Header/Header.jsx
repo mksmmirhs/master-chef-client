@@ -19,7 +19,9 @@ const Header = () => {
                   Blog
                 </Link>
               </Nav>
-              <button className="btn btn-primary">Login</button>
+              <Link to="/login">
+                <button className="btn btn-primary">Login</button>
+              </Link>
             </Navbar.Collapse>
           </Container>
         </Navbar>
