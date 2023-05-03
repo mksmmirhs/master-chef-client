@@ -29,7 +29,11 @@ const Header = () => {
                 </Link>
               </Nav>
               {user ? (
-                <Image className="me-4" src={user.photoURL} roundedCircle />
+                <Image
+                  className="me-4 display-pic"
+                  src={user.photoURL}
+                  roundedCircle
+                />
               ) : (
                 <></>
               )}
