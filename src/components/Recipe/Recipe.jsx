@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Card, Col } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Recipe = ({ recipe }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const handleFavorite = () => {
     setIsFavorite(true);
+    toast('Your recipe added');
   };
   return (
     <Col>
@@ -32,6 +35,7 @@ const Recipe = ({ recipe }) => {
           >
             Add to Favorite
           </button>
+          <ToastContainer />
         </Card.Body>
       </Card>
     </Col>
