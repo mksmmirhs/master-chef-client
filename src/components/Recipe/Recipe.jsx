@@ -11,28 +11,27 @@ const Recipe = ({ recipe }) => {
       <Card>
         <Card.Body>
           <Card.Title>{recipe.name}</Card.Title>
-          <Card.Text>
-            <p>Description: {recipe.description} </p>
-            <ul>
-              {recipe.ingredients.map(igd => (
-                <li>{igd}</li>
-              ))}
-            </ul>
-            <p>Cooking directions:</p>
-            {recipe.directions.map(mtd => (
-              <>
-                {mtd} <br />
-              </>
+
+          <p>Description: {recipe.description} </p>
+          <ul>
+            {recipe.ingredients.map(igd => (
+              <li key={igd}>{igd}</li>
             ))}
-            <h3>Rating : {recipe.rating}</h3>
-            <button
-              onClick={handleFavorite}
-              className="btn btn-info"
-              disabled={isFavorite}
-            >
-              Add to Favorite
-            </button>
-          </Card.Text>
+          </ul>
+          <p>Cooking directions:</p>
+          {recipe.directions.map(mtd => (
+            <p key={mtd}>
+              {mtd} <br />
+            </p>
+          ))}
+          <h3>Rating : {recipe.rating}</h3>
+          <button
+            onClick={handleFavorite}
+            className="btn btn-info"
+            disabled={isFavorite}
+          >
+            Add to Favorite
+          </button>
         </Card.Body>
       </Card>
     </Col>

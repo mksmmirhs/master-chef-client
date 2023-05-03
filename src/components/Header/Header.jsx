@@ -33,6 +33,7 @@ const Header = () => {
                   className="me-4 display-pic"
                   src={user.photoURL}
                   roundedCircle
+                  title={user?.displayName ? user.displayName : ''}
                 />
               ) : (
                 <></>

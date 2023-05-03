@@ -17,14 +17,13 @@ const HomeChef = ({ chef }) => {
         <Card.Img variant="top" src={chef_picture} />
         <Card.Body>
           <Card.Title>{chef_name}</Card.Title>
-          <Card.Text>
-            <p>Years of experience: {years_of_experience} Years</p>
-            <p>Numbers of recipes: {num_of_recipes} </p>
-            <p>Likes: {likes}</p>
-            <Link to={`chef/${id}`}>
-              <button className="btn btn-primary">View Recipes</button>
-            </Link>
-          </Card.Text>
+
+          <p>Years of experience: {years_of_experience} Years</p>
+          <p>Numbers of recipes: {num_of_recipes} </p>
+          <p>Likes: {likes}</p>
+          <Link to={`chef/${id}`}>
+            <button className="btn btn-primary">View Recipes</button>
+          </Link>
         </Card.Body>
       </Card>
     </Col>

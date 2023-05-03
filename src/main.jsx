@@ -10,6 +10,7 @@ import Chef from './components/Chef/Chef';
 import AuthProvider from './AuthProvider/AuthProvider';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import PrivateRoute from './PrivetRoute/PrivateRoute';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/chef/:id',
-        element: <Chef></Chef>,
+        element: (
+          <PrivateRoute>
+            <Chef></Chef>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`https://server-mksmmirhs.vercel.app/data/${params.id}`),
       },
