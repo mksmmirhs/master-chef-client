@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 
 import { useEffect } from 'react';
@@ -30,11 +31,27 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
   const loginWithPopUp = provider => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
+  };
+
+  const profileUpdate = (name, photoUrl) => {
+    setLoading(true);
+    updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photoUrl,
+    })
+      .then(() => {
+        // Profile updated!
+        // ...
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -55,6 +72,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     loginWithPopUp,
+    profileUpdate,
   };
 
   return (

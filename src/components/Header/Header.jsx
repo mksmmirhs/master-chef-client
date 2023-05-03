@@ -28,7 +28,7 @@ const Header = () => {
                   Blog
                 </Link>
               </Nav>
-              {user ? (
+              {user?.photoURL ? (
                 <Image
                   className="me-4 display-pic"
                   src={user.photoURL}

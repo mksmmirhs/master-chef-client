@@ -1,12 +1,45 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Register = () => {
+  const { user, createUser, profileUpdate } = useContext(AuthContext);
+  const [error, setError] = useState('');
+
+  const userFormSubmit = event => {
+    setError('');
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const confirmEmail = form.verifyEmail.value;
+    const verifyPassword = form.verifyPassword.value;
+    const password = form.password.value;
+    const photoUrl = form.photoUrl.value;
+    if (email !== confirmEmail) {
+      setError('Email did not match');
+      return;
+    } else if (password !== verifyPassword) {
+      setError('Password did not match');
+      return;
+    } else if (password.length < 6) {
+      setError('Password Must be more than six characters');
+      return;
+    }
+    createUser(email, password)
+      .then(result => {
+        console.log(result.user);
+        profileUpdate(name, photoUrl);
+      })
+      .catch(err => {
+        setError(err);
+      });
+  };
   return (
     <div>
       <Container>
-        <Form className="w-50 mx-auto">
+        <Form className="w-50 mx-auto" onSubmit={userFormSubmit}>
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Your Name</Form.Label>
             <Form.Control
@@ -22,6 +55,7 @@ const Register = () => {
               type="text"
               name="photoUrl"
               placeholder="Enter Your Photo URL"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -70,7 +104,7 @@ const Register = () => {
             Already user? <Link to="/login">Login</Link>
           </Form.Text>
         </Form>
-        <hr />
+        <p className=" text-danger text-center">{error}</p>
       </Container>
     </div>
   );

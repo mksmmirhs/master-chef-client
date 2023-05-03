@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
@@ -9,7 +9,8 @@ import {
 } from 'firebase/auth';
 
 const Login = () => {
-  const { auth, loginWithPopUp } = useContext(AuthContext);
+  const { loginWithPopUp, signIn } = useContext(AuthContext);
+  const [error, setError] = useState();
   const handleGoogle = () => {
     const provider = new GoogleAuthProvider();
     loginWithPopUp(provider)
@@ -30,10 +31,16 @@ const Login = () => {
         console.log(error);
       });
   };
+  const handleSignIn = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+  };
   return (
     <div>
       <Container>
-        <Form className="w-50 mx-auto">
+        <Form className="w-50 mx-auto" onSubmit={handleSignIn}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" name="email" placeholder="Enter email" />
