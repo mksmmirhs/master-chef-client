@@ -18,6 +18,8 @@ const Home = () => {
             and showcase the skills of culinary experts.
           </h1>
         </div>
+        <h1 className=" text-center">Our Chefs</h1>
+        <hr className="mb-4" />
         <div className="mb-4">
           <Row xs={1} md={3} className="g-4">
             {data.map(chef => (
